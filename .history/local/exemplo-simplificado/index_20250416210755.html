@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exemplo Simplificado - Efeitos ABC</title>
+  <style>
+    /* Variáveis e configurações básicas */
+    :root {
+      --destaque: #E5E5E5;
+      --fonte: 'Arial', sans-serif;
+      --background-light: #EBF0F4;
+      --neutral-dark: #333333;
+      --perspective: 1000px;
+      --transition-duration: 0.2s;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      display: block;
+      box-sizing: border-box;
+      background-color: #333;
+      color: #fff;
+      overflow-x: hidden;
+      perspective: var(--perspective);
+      font-family: var(--fonte);
+    }
+
+    /* Container principal */
+    .seja-um-franqueado {
+      position: relative;
+      padding-top: 50px;
+      transform-style: preserve-3d;
+      perspective: var(--perspective);
+      overflow: hidden;
+      height: 100vh;
+      width: 100%;
+    }
+
+    /* Background com parallax */
+    .parallax-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 120%;
+      height: 120%;
+      background-image: linear-gradient(135deg, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.5)),
+        url('https://images.unsplash.com/photo-1531834685032-c34bf0d84c77?q=80&w=1887&auto=format&fit=crop');
+      background-size: cover;
+      background-position: center;
+      transform: translateZ(-50px) scale(1.5);
+      will-change: transform;
+      z-index: 0;
+      transition: transform var(--transition-duration) ease-out;
+    }
+
+    /* Camada de efeito */
+    .parallax-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 120%;
+      height: 120%;
+      background: radial-gradient(circle at center, transparent, rgba(0, 0, 0, 0.7));
+      opacity: 0.7;
+      transform: translateZ(-30px) scale(1.3);
+      will-change: transform;
+      z-index: 1;
+      transition: transform var(--transition-duration) ease-out;
+    }
+
+    /* Container de partículas */
+    #particles-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    /* Partículas individuais */
+    .particle {
+      position: absolute;
+      background-color: white;
+      border-radius: 50%;
+      opacity: 0.3;
+      pointer-events: none;
+      will-change: transform, opacity;
+      transition: transform 0.3s ease-out, opacity 0.3s ease-out, box-shadow 0.3s ease-out;
+    }
+
+    /* Elementos com efeito parallax */
+    .parallax-element {
+      transform-style: preserve-3d;
+      will-change: transform;
+      transition: transform var(--transition-duration) ease-out;
+      backface-visibility: hidden;
+    }
+
+    /* Conteúdo */
+    .content-wrapper {
+      position: relative;
+      z-index: 3;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      text-align: center;
+      padding: 2rem;
+    }
+
+    /* Título */
+    .magic-title {
+      font-size: 3.5rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      background: linear-gradient(45deg, #FF6B6B, #FFE66D);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: 0 2px 15px rgba(255, 107, 107, 0.5);
+      transform: translateZ(50px);
+      max-width: 800px;
+    }
+
+    /* Texto de detalhes */
+    .text-details {
+      max-width: 800px;
+      font-size: 1.25rem;
+      line-height: 1.6;
+      margin-bottom: 2rem;
+      opacity: 0.9;
+    }
+
+    /* Botão de ação */
+    .btn-primary {
+      display: inline-block;
+      padding: 1rem 2rem;
+      background: linear-gradient(45deg, #FF6B6B, #FF8E53);
+      color: white;
+      border: none;
+      border-radius: 50px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(255, 107, 107, 0.6);
+    }
+
+    /* Responsividade */
+    @media (max-width: 768px) {
+      .magic-title {
+        font-size: 2.5rem;
+      }
+
+      .text-details {
+        font-size: 1rem;
+      }
+
+      .btn-primary {
+        padding: 0.8rem 1.5rem;
+        font-size: 1rem;
+      }
+
+      /* Reduzir intensidade do efeito em dispositivos móveis */
+      .parallax-bg,
+      .parallax-overlay {
+        transform: none !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <section class="seja-um-franqueado">
+    <!-- Background com efeito parallax -->
+    <div class="parallax-bg"></div>
+    <div class="parallax-overlay"></div>
+
+    <div id="particles-container">
+      <!-- Partículas serão criadas pelo JavaScript -->
+    </div>
+    <div class="content-wrapper">
+      <h1 class="magic-title parallax-element">Seja um Franqueado ABC da Construção</h1>
+      <p class="text-details parallax-element">O modelo de negócio que está transformando o mercado da construção no
+        Brasil: inovação e rentabilidade em um setor que não para de evoluir.</p>
+      <button class="btn-primary parallax-element">Quero ser um franqueado</button>
+    </div>
+  </section>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      // Configurações
+      const PARTICLE_COUNT = 50;
+      const PARALLAX_DEPTH = 40;
+      const BG_PARALLAX_FACTOR = 0.1; // Fator de movimento do background
+
+      // Variáveis globais
+      let parallaxElements = [];
+      let mouse = { x: 0, y: 0 };
+      let scrollPosition = 0;
+      let ticking = false;
+
+      // Elementos de background
+      const parallaxBg = document.querySelector('.parallax-bg');
+      const parallaxOverlay = document.querySelector('.parallax-overlay');
+
+      // Inicializar efeitos
+      function init() {
+        createParticles();
+        initParallax();
+
+        // Eventos
+        document.addEventListener('mousemove', handleMouseMove);
+        window.addEventListener('scroll', handleScrollRequest);
+        window.addEventListener('resize', handleResize);
+
+        // Chamada inicial
+        handleScrollPosition();
+        handleResize();
+      }
+
+      // Gerenciar eventos de scroll com melhor performance
+      function handleScrollRequest() {
+        scrollPosition = window.scrollY;
+
+        if (!ticking) {
+          window.requestAnimationFrame(() => {
+            handleScrollPosition();
+            ticking = false;
+          });
+
+          ticking = true;
+        }
+      }
+
+      // Aplicar o efeito parallax no scroll
+      function handleScrollPosition() {
+        // Efeito parallax no background baseado no scroll
+        if (parallaxBg && parallaxOverlay) {
+          const yOffset = scrollPosition * BG_PARALLAX_FACTOR;
+
+          // Mover o background mais lentamente que a página
+          parallaxBg.style.transform = `translateZ(-50px) translateY(${-yOffset}px) scale(1.5)`;
+          parallaxOverlay.style.transform = `translateZ(-30px) translateY(${-yOffset * 0.5}px) scale(1.3)`;
+        }
+
+        // Atualizar elementos de conteúdo também
+        handleScroll();
+      }
+
+      // Ajustar para o tamanho da tela
+      function handleResize() {
+        const section = document.querySelector('.seja-um-franqueado');
+        const width = window.innerWidth;
+        const height = window.innerHeight;
+
+        // Ajustar o tamanho do background para cobrir toda a área mesmo com o efeito parallax
+        if (parallaxBg && parallaxOverlay && section) {
+          const sectionHeight = section.offsetHeight;
+
+          // Calcular o tamanho necessário para cobrir toda a área durante o movimento
+          const bgSize = Math.max(width, height) * 1.2;
+
+          parallaxBg.style.width = `${width * 1.2}px`;
+          parallaxBg.style.height = `${sectionHeight * 1.2}px`;
+
+          parallaxOverlay.style.width = `${width * 1.2}px`;
+          parallaxOverlay.style.height = `${sectionHeight * 1.2}px`;
+        }
+      }
+
+      // Criar partículas
+      function createParticles() {
+        const container = document.getElementById('particles-container');
+
+        for (let i = 0; i < PARTICLE_COUNT; i++) {
+          createParticle(container);
+        }
+
+        // Adicionar interatividade ao mouse
+        document.addEventListener('mousemove', (e) => {
+          const mouseX = e.clientX;
+          const mouseY = e.clientY;
+
+          // Afetar partículas próximas
+          const particles = container.querySelectorAll('.particle');
+          particles.forEach(particle => {
+            const rect = particle.getBoundingClientRect();
+            const particleX = rect.left + rect.width / 2;
+            const particleY = rect.top + rect.height / 2;
+
+            // Calcular distância
+            const dx = mouseX - particleX;
+            const dy = mouseY - particleY;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+
+            // Se a partícula estiver próxima do mouse (150px)
+            if (distance < 150) {
+              // Fator de movimento baseado na distância
+              const factor = 1 - (distance / 150);
+
+              // Mover levemente na direção oposta
+              const moveX = -dx * factor * 0.03;
+              const moveY = -dy * factor * 0.03;
+
+              // Aplicar transformação
+              particle.style.transform = `translate(${moveX}px, ${moveY}px)`;
+
+              // Aumentar brilho
+              particle.style.boxShadow = `0 0 ${parseInt(particle.style.width) * 3}px rgba(255, 255, 255, 0.9)`;
+              particle.style.opacity = (parseFloat(particle.style.opacity) + 0.1).toString();
+            }
+          });
+        });
+      }
+
+      function createParticle(container) {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+
+        // Posição aleatória
+        const x = Math.random() * 100;
+        const y = Math.random() * 100;
+
+        // Tamanho aleatório
+        const size = Math.random() * 4 + 1;
+
+        // Opacidade aleatória
+        const opacity = Math.random() * 0.5 + 0.1;
+
+        // Configurar estilos
+        particle.style.left = `${x}%`;
+        particle.style.top = `${y}%`;
+        particle.style.width = `${size}px`;
+        particle.style.height = `${size}px`;
+        particle.style.opacity = `${opacity}`;
+        particle.style.boxShadow = `0 0 ${size * 2}px rgba(255, 255, 255, 0.8)`;
+
+        container.appendChild(particle);
+
+        // Animar a partícula
+        animateParticle(particle);
+      }
+
+      function animateParticle(particle) {
+        // Duração aleatória para a animação
+        const duration = Math.random() * 10 + 10; // 10-20 segundos
+
+        // Direção aleatória
+        const xMove = Math.random() * 20 - 10; // -10 a +10
+        const yMove = Math.random() * 20 - 10; // -10 a +10
+
+        // Configurar animação com CSS
+        particle.style.transition = `transform ${duration}s linear, opacity ${duration}s ease-in-out`;
+        particle.style.transform = `translate(${xMove}vw, ${yMove}vh)`;
+
+        // Alterar opacidade aleatoriamente
+        setTimeout(() => {
+          particle.style.opacity = Math.random() * 0.5 + 0.1;
+        }, Math.random() * 5000);
+
+        // Reiniciar animação quando terminar
+        setTimeout(() => {
+          particle.style.transition = 'none';
+          particle.style.transform = 'translate(0, 0)';
+
+          // Pequeno delay para evitar transição abrupta
+          setTimeout(() => {
+            animateParticle(particle);
+          }, 50);
+        }, duration * 1000);
+      }
+
+      // Inicializar efeito parallax
+      function initParallax() {
+        // Selecionar elementos com a classe parallax-element
+        const elements = document.querySelectorAll('.parallax-element');
+
+        // Configurar profundidades diferentes baseado na ordem
+        elements.forEach((el, index) => {
+          // Maior profundidade para os primeiros elementos (título, etc.)
+          const depth = 0.5 - (index * 0.1);
+
+          parallaxElements.push({
+            element: el,
+            depth: Math.max(0.1, depth) // Mínimo de 0.1
+          });
+        });
+
+        // Posição inicial
+        handleMouseMove({
+          clientX: window.innerWidth / 2,
+          clientY: window.innerHeight / 2
+        });
+      }
+
+      // Manipular movimento do mouse
+      function handleMouseMove(event) {
+        // Atualizar posição do mouse
+        mouse.x = (event.clientX / window.innerWidth) - 0.5;
+        mouse.y = (event.clientY / window.innerHeight) - 0.5;
+
+        // Aplicar transformação aos elementos de conteúdo
+        parallaxElements.forEach(({ element, depth }) => {
+          const x = mouse.x * PARALLAX_DEPTH * depth;
+          const y = mouse.y * PARALLAX_DEPTH * depth;
+          const scale = 1 + (depth * 0.05);
+
+          // Aplicar transformação 3D
+          element.style.transform = `translate3d(${x}px, ${y}px, 0) scale(${scale})`;
+        });
+
+        // Efeito parallax no background baseado no movimento do mouse
+        if (parallaxBg && parallaxOverlay) {
+          // Mover o background em direção oposta ao mouse para criar efeito de profundidade
+          const bgX = -mouse.x * 20; // Ajuste este valor para mais ou menos movimento
+          const bgY = -mouse.y * 20;
+
+          const overlayX = -mouse.x * 10; // Movimento menor para o overlay
+          const overlayY = -mouse.y * 10;
+
+          // Aplicar o efeito de scroll junto com o movimento do mouse
+          const yOffset = scrollPosition * BG_PARALLAX_FACTOR;
+
+          parallaxBg.style.transform = `translateZ(-50px) translate(${bgX}px, ${bgY - yOffset}px) scale(1.5)`;
+          parallaxOverlay.style.transform = `translateZ(-30px) translate(${overlayX}px, ${overlayY - yOffset * 0.5}px) scale(1.3)`;
+        }
+      }
+
+      // Manipular scroll para elementos de conteúdo
+      function handleScroll() {
+        const windowHeight = window.innerHeight;
+
+        // Aplicar efeito de profundidade com base no scroll
+        parallaxElements.forEach(({ element, depth }) => {
+          const elementRect = element.getBoundingClientRect();
+          const elementCenter = elementRect.top + elementRect.height / 2;
+
+          // Distância do centro da viewport
+          const distanceFromCenter = (elementCenter - windowHeight / 2) / (windowHeight / 2);
+
+          // Se o elemento estiver visível na viewport
+          if (elementRect.top < windowHeight && elementRect.bottom > 0) {
+            const z = -distanceFromCenter * depth * 20;
+            const currentTransform = element.style.transform;
+
+            if (currentTransform.includes('translate3d')) {
+              const match = currentTransform.match(/translate3d\(([^,]+),\s*([^,]+),\s*[^)]+\)/);
+              if (match) {
+                const x = match[1];
+                const y = match[2];
+                element.style.transform = `translate3d(${x}, ${y}, ${z}px)`;
+              }
+            }
+          }
+        });
+      }
+
+      // Inicializar
+      init();
+    });
+  </script>
+</body>
+
+</html>

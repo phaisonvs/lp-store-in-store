@@ -1,0 +1,271 @@
+/* Arquivo CSS complementar para melhorias de espaçamento e estilo */
+
+/* Variáveis para espaçamento consistente */
+:root {
+  --spacing-sm: 1rem;
+  --spacing-md: 2rem;
+  --spacing-lg: 3rem;
+  --spacing-xl: 4rem;
+  --cursor-color: #e3062d;
+  /* Cor do cursor para o efeito de typing */
+  --typing-speed: 3.5s;
+  /* Velocidade da animação de typing */
+  --cursor-blink-speed: 0.75s;
+  /* Velocidade do piscar do cursor */
+  --typing-bg-color: rgba(51, 51, 51, 0.9);
+  --cursor-height: 1.2em;
+  /* Tamanho do cursor relativo ao tamanho da fonte */
+  --char-count: 70;
+  /* Valor padrão, será atualizado via JS */
+}
+
+/* Imagem de fundo e espaçamento na seção principal */
+.seja-um-franqueado {
+  position: relative;
+  background-image: url('assets/full-banner.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding-top: var(--spacing-lg);
+  padding-bottom: var(--spacing-xl);
+}
+
+/* Conteúdo principal com melhor espaçamento */
+.conteudo-seja-um-franqueado-abc {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: var(--spacing-lg);
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--spacing-md);
+}
+
+/* Ajuste de espaçamento para o logo */
+.svg-suf-desk {
+  margin-bottom: var(--spacing-md);
+}
+
+/* Espaçamento do texto principal */
+.faca-parte {
+  margin-bottom: var(--spacing-lg);
+}
+
+/* Efeito de Typewriter - Centralizado e sem deslocamento */
+.texto-faca-parte {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  position: relative;
+  text-align: center;
+  /* Garante que o inline-block fique centralizado */
+}
+
+/* Estilo base para o título */
+.maior-rede-de-acabamentos {
+  display: inline-block;
+  /* Essencial para o text-align: center funcionar */
+  font-size: 1.5rem;
+  line-height: 1.2;
+  color: transparent;
+  /* O texto real fica invisível, o ::before mostra */
+  margin: 0 auto;
+  max-width: 1000px;
+  white-space: pre-wrap;
+  /* Mantém quebras de linha */
+  position: relative;
+  text-align: left;
+  /* O texto dentro do container é alinhado à esquerda */
+  border-right: none;
+  /* Sem borda no elemento principal */
+  width: auto;
+  /* Largura automática baseada no conteúdo */
+  overflow: visible;
+  /* Não precisamos esconder o overflow aqui */
+}
+
+/* Pseudo-elemento que contém o texto e a animação */
+.maior-rede-de-acabamentos.typing-active::before {
+  content: attr(data-text);
+  /* Pega o texto do atributo data-text */
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 0;
+  /* Começa com largura 0 */
+  height: 100%;
+  color: #e5e5e5;
+  /* Cor do texto visível */
+  overflow: hidden;
+  white-space: pre-wrap;
+  /* Mantém quebras de linha */
+  border-right: 0.15em solid var(--cursor-color);
+  /* Cursor */
+  animation:
+    typing var(--typing-speed) steps(var(--char-count), end) forwards,
+    blink-caret var(--cursor-blink-speed) step-end infinite;
+}
+
+/* Removemos a animação de width do elemento pai */
+.maior-rede-de-acabamentos.typing-active {
+  color: transparent;
+  /* Garante que o texto original permaneça invisível */
+  border-right: none;
+  /* Remove qualquer borda residual */
+  animation: none;
+  /* Remove animações anteriores */
+}
+
+/* Animação de Typing (largura do ::before) */
+@keyframes typing {
+  from {
+    width: 0;
+  }
+
+  to {
+    width: 100%;
+  }
+
+  /* Revela todo o conteúdo */
+}
+
+/* Animação do Cursor (borda do ::before) */
+@keyframes blink-caret {
+
+  from,
+  to {
+    border-right-color: transparent;
+  }
+
+  50% {
+    border-right-color: var(--cursor-color);
+  }
+}
+
+/* Estado final após a animação */
+.maior-rede-de-acabamentos.typing-completed::before {
+  border-right-color: transparent;
+  /* Esconde o cursor */
+  animation: none;
+  /* Para a animação */
+  width: 100%;
+  /* Garante que todo o texto esteja visível */
+}
+
+.maior-rede-de-acabamentos.typing-completed {
+  color: #e5e5e5;
+  /* Mostra o texto original no final para seleção, etc. */
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+  transition: text-shadow 0.5s ease;
+}
+
+/* Ajustes para mobile */
+@media (max-width: 800px) {
+  .maior-rede-de-acabamentos {
+    font-size: 14px;
+  }
+
+  .maior-rede-de-acabamentos.typing-active::before {
+    animation:
+      typing calc(var(--typing-speed) * 0.7) steps(var(--char-count), end) forwards,
+      blink-caret var(--cursor-blink-speed) step-end infinite;
+    border-right-width: 0.1em;
+  }
+}
+
+/* Espaçamento do carrossel de vídeos */
+.container-prova-social-1 {
+  margin: var(--spacing-md) 0 var(--spacing-lg);
+}
+
+/* Espaçamento dos números */
+.big-numbers {
+  margin: var(--spacing-md) 0 var(--spacing-lg);
+}
+
+.big-numbers ul {
+  padding: 0 var(--spacing-md);
+}
+
+/* Espaçamento da seção de notícias */
+.section-the-news {
+  margin: var(--spacing-lg) 0;
+}
+
+/* Espaçamento do título das Guide Shops */
+.nossas-guides-container {
+  margin: var(--spacing-lg) 0 var(--spacing-md);
+}
+
+.nossas-guides-container h3 {
+  margin-bottom: var(--spacing-sm);
+}
+
+.subtexto-guide {
+  margin-bottom: var(--spacing-md);
+}
+
+/* Espaçamento do carrossel de lojas */
+.carousel {
+  padding: var(--spacing-lg) 0;
+}
+
+/* Ajustes para responsividade */
+@media (max-width: 800px) {
+  .conteudo-seja-um-franqueado-abc {
+    gap: var(--spacing-md);
+    padding: var(--spacing-sm);
+  }
+
+  .faca-parte {
+    margin-bottom: var(--spacing-md);
+  }
+
+  .container-prova-social-1 {
+    margin: var(--spacing-sm) 0 var(--spacing-md);
+  }
+
+  .big-numbers {
+    margin: var(--spacing-sm) 0 var(--spacing-md);
+  }
+
+  .section-the-news {
+    margin: var(--spacing-md) 0;
+  }
+}
+
+/**
+ * Arquivo de personalização para o site Seja Um Franqueado
+ * Contém ajustes específicos para animações e efeitos
+ */
+
+/* Ajustes para animações do Animate.css */
+.animate__animated {
+  --animate-duration: 1.2s;
+}
+
+/* Ajustes específicos para os SVGs */
+.svg-suf-desk.animate__animated,
+.svg-suf-mobile.animate__animated {
+  will-change: transform;
+  transform-origin: center top;
+}
+
+/* Modificar o timing da animação para o SVG mobile (opcional) */
+@media (max-width: 800px) {
+  .svg-suf-mobile.animate__animated {
+    --animate-duration: 1s;
+  }
+}
+
+/* Garantir que os SVGs não sejam visíveis antes da animação */
+.svg-suf-desk.animate__animated:not(.animate__backInDown),
+.svg-suf-mobile.animate__animated:not(.animate__backInDown) {
+  opacity: 0;
+}

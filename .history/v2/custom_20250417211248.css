@@ -1,0 +1,210 @@
+/* Arquivo CSS complementar para melhorias de espaçamento e estilo */
+
+/* Variáveis para espaçamento consistente */
+:root {
+  --spacing-sm: 1rem;
+  --spacing-md: 2rem;
+  --spacing-lg: 3rem;
+  --spacing-xl: 4rem;
+  --cursor-color: #e3062d;
+  /* Cor do cursor para o efeito de typing */
+  --typing-speed: 3.5s;
+  /* Velocidade da animação de typing */
+  --cursor-blink-speed: 0.75s;
+  /* Velocidade do piscar do cursor */
+}
+
+/* Imagem de fundo e espaçamento na seção principal */
+.seja-um-franqueado {
+  position: relative;
+  background-image: url('assets/full-banner.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding-top: var(--spacing-lg);
+  padding-bottom: var(--spacing-xl);
+}
+
+/* Conteúdo principal com melhor espaçamento */
+.conteudo-seja-um-franqueado-abc {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: var(--spacing-lg);
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--spacing-md);
+}
+
+/* Ajuste de espaçamento para o logo */
+.svg-suf-desk {
+  margin-bottom: var(--spacing-md);
+}
+
+/* Espaçamento do texto principal */
+.faca-parte {
+  margin-bottom: var(--spacing-lg);
+}
+
+/* Efeito de Typewriter - Adaptado para o h2.maior-rede-de-acabamentos */
+.texto-faca-parte {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.maior-rede-de-acabamentos {
+  color: #e5e5e5;
+  font-size: 1.5rem;
+  line-height: 120%;
+  margin: 0 auto;
+  text-align: center;
+  max-width: 1000px;
+  overflow: hidden;
+  /* Não revela o conteúdo até a animação */
+  border-right: .15em solid transparent;
+  /* Cursor invisível inicialmente */
+  white-space: normal;
+  /* Permite quebra de linha controlada */
+  width: 0;
+  /* Inicialmente não tem largura */
+}
+
+/* Aplicamos a animação apenas quando a classe typing-active é adicionada via JS */
+.maior-rede-de-acabamentos.typing-active {
+  animation:
+    typing var(--typing-speed) steps(70, end) forwards,
+    blink-caret var(--cursor-blink-speed) step-end infinite;
+  border-right-color: var(--cursor-color);
+  /* Cursor visível */
+}
+
+/* Efeito de digitação */
+@keyframes typing {
+  from {
+    width: 0
+  }
+
+  to {
+    width: 100%
+  }
+}
+
+/* Efeito de piscar do cursor */
+@keyframes blink-caret {
+
+  from,
+  to {
+    border-color: transparent
+  }
+
+  50% {
+    border-color: var(--cursor-color)
+  }
+}
+
+/* Ajustes responsivos para o efeito de typing */
+@media (max-width: 800px) {
+  .maior-rede-de-acabamentos {
+    font-size: 14px;
+    animation-duration: calc(var(--typing-speed) * 0.8);
+    /* Ligeiramente mais rápido em telas menores */
+  }
+}
+
+/* Espaçamento do carrossel de vídeos */
+.container-prova-social-1 {
+  margin: var(--spacing-md) 0 var(--spacing-lg);
+}
+
+/* Espaçamento dos números */
+.big-numbers {
+  margin: var(--spacing-md) 0 var(--spacing-lg);
+}
+
+.big-numbers ul {
+  padding: 0 var(--spacing-md);
+}
+
+/* Espaçamento da seção de notícias */
+.section-the-news {
+  margin: var(--spacing-lg) 0;
+}
+
+/* Espaçamento do título das Guide Shops */
+.nossas-guides-container {
+  margin: var(--spacing-lg) 0 var(--spacing-md);
+}
+
+.nossas-guides-container h3 {
+  margin-bottom: var(--spacing-sm);
+}
+
+.subtexto-guide {
+  margin-bottom: var(--spacing-md);
+}
+
+/* Espaçamento do carrossel de lojas */
+.carousel {
+  padding: var(--spacing-lg) 0;
+}
+
+/* Ajustes para responsividade */
+@media (max-width: 800px) {
+  .conteudo-seja-um-franqueado-abc {
+    gap: var(--spacing-md);
+    padding: var(--spacing-sm);
+  }
+
+  .faca-parte {
+    margin-bottom: var(--spacing-md);
+  }
+
+  .container-prova-social-1 {
+    margin: var(--spacing-sm) 0 var(--spacing-md);
+  }
+
+  .big-numbers {
+    margin: var(--spacing-sm) 0 var(--spacing-md);
+  }
+
+  .section-the-news {
+    margin: var(--spacing-md) 0;
+  }
+}
+
+/**
+ * Arquivo de personalização para o site Seja Um Franqueado
+ * Contém ajustes específicos para animações e efeitos
+ */
+
+/* Ajustes para animações do Animate.css */
+.animate__animated {
+  --animate-duration: 1.2s;
+}
+
+/* Ajustes específicos para os SVGs */
+.svg-suf-desk.animate__animated,
+.svg-suf-mobile.animate__animated {
+  will-change: transform;
+  transform-origin: center top;
+}
+
+/* Modificar o timing da animação para o SVG mobile (opcional) */
+@media (max-width: 800px) {
+  .svg-suf-mobile.animate__animated {
+    --animate-duration: 1s;
+  }
+}
+
+/* Garantir que os SVGs não sejam visíveis antes da animação */
+.svg-suf-desk.animate__animated:not(.animate__backInDown),
+.svg-suf-mobile.animate__animated:not(.animate__backInDown) {
+  opacity: 0;
+}

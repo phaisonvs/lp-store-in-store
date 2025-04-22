@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<template>
+  <!-- Container Principal -->
+  <div class="seja-um-franqueado">
+    <!-- Seção Hero -->
+    <section class="conteudo-seja-um-franqueado-abc">
+      <div class="container-seja-um-franqueado">
+        <div class="content-seja-um-franqueado">
+          <div class="animate-on-scroll">
+            <h2>Seja um Franqueado</h2>
+            <p>Faça parte da nossa rede de sucesso e transforme vidas através do empreendedorismo.</p>
+          </div>
+
+          <!-- Números -->
+          <div class="numeros-container animate-on-scroll">
+            <div class="numero-item">
+              <h3>+500</h3>
+              <p>Lojas em todo o Brasil</p>
+            </div>
+            <div class="numero-item">
+              <h3>25 anos</h3>
+              <p>De experiência no mercado</p>
+            </div>
+            <div class="numero-item">
+              <h3>97%</h3>
+              <p>De satisfação dos franqueados</p>
+            </div>
+          </div>
+
+          <div class="button-container">
+            <button class="primary-button" onclick={handlePrimaryClick}>
+              Quero ser um franqueado
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Seção Carrossel de Depoimentos -->
+    <section class="container-prova-social-1">
+      <div class="carrossel-container animate-on-scroll">
+        <div class="carrossel-wrapper" style={carrosselStyle}>
+          <div class="carrossel-prova-social-1" style={carrosselStyle}>
+            <template for:each={testimonials} for:item="testimonial" for:index="index">
+              <div key={testimonial.id} class="carrossel-item">
+                <div class="video-thumbnail" style={testimonial.thumbnailStyle} onclick={handleVideoClick}
+                  data-video-id={testimonial.videoId}>
+                  <div class="play-button">
+                    <lightning-icon icon-name="utility:play" size="medium"></lightning-icon>
+                  </div>
+                </div>
+                <h3>{testimonial.title}</h3>
+                <p>{testimonial.description}</p>
+              </div>
+            </template>
+          </div>
+          <div class="carrossel-controls">
+            <button class="carrossel-button" onclick={handlePrevClick}>
+              <lightning-icon icon-name="utility:chevronleft" size="small"></lightning-icon>
+            </button>
+            <button class="carrossel-button" onclick={handleNextClick}>
+              <lightning-icon icon-name="utility:chevronright" size="small"></lightning-icon>
+            </button>
+          </div>
+        </div>
+    </section>
+
+    <!-- Modal de Vídeo -->
+    <template if:true={isModalOpen}>
+      <div class="video-modal" onclick={handleModalClick}>
+        <div class="modal-content">
+          <button class="close-button" onclick={handleCloseModal}>
+            <lightning-icon icon-name="utility:close" size="medium"></lightning-icon>
+          </button>
+          <iframe class="video-iframe" src={videoUrl} title="Depoimento de Franqueado"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+          </iframe>
+        </div>
+      </div>
+    </template>
+  </div>
+</template>

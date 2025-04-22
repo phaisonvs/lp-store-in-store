@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Teste de Página</title>
+  <style>
+    body {
+      background-color: #333;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      text-align: center;
+    }
+
+    h1 {
+      color: #e3062d;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Teste de Carregamento Local</h1>
+  <p>Se você está vendo esta página, o servidor local está funcionando corretamente.</p>
+  <p>Horário atual: <span id="time"></span></p>
+
+  <script>
+    document.getElementById('time').textContent = new Date().toLocaleTimeString();
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,158 @@
+:host {
+  display: block;
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 1.5rem;
+  --spacing-lg: 2rem;
+  --spacing-xl: 3rem;
+  --spacing-xxl: 4rem;
+
+  --transition-duration: 0.3s;
+  --transition-timing: ease-in-out;
+
+  --color-primary: #0070D2;
+  --color-secondary: #1589EE;
+  --color-text: #16325C;
+  --color-text-light: #54698D;
+  --color-background: #F3F2F2;
+
+  --animation-duration: 0.6s;
+  --animation-timing: cubic-bezier(0.4, 0, 0.2, 1);
+
+  --carousel-height: 400px;
+}
+
+/* Reset e Base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Hero Section */
+.seja-um-franqueado {
+  position: relative;
+  background-image: url('/assets/full-banner.png');
+  background-size: cover;
+  background-position: center top;
+  background-attachment: fixed;
+  padding: var(--spacing-xl) 0;
+  color: #ffffff;
+  z-index: 1;
+}
+
+.conteudo-seja-um-franqueado {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-md);
+}
+
+/* Animações */
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity var(--transition-duration) ease,
+    transform var(--transition-duration) ease;
+}
+
+.animate-on-scroll.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Carrossel */
+.carrossel-container {
+  position: relative;
+  overflow: hidden;
+  margin: var(--spacing-lg) 0;
+}
+
+.carrossel-wrapper {
+  display: flex;
+  transition: transform var(--transition-duration) ease;
+}
+
+.carrossel-slide {
+  flex: 0 0 100%;
+  padding: 0 var(--spacing-sm);
+}
+
+.carrossel-thumbnail {
+  position: relative;
+  height: var(--carousel-height);
+  background-size: cover;
+  background-position: center;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform var(--transition-duration) ease;
+}
+
+.carrossel-thumbnail:hover {
+  transform: scale(1.02);
+}
+
+.carrossel-controls {
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  transform: translateY(-50%);
+  padding: 0 var(--spacing-sm);
+}
+
+/* Modal de vídeo */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.modal-content {
+  position: relative;
+  width: 90%;
+  max-width: 1000px;
+  aspect-ratio: 16/9;
+}
+
+.modal-close {
+  position: absolute;
+  top: -40px;
+  right: 0;
+  color: white;
+  cursor: pointer;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  :host {
+    --carousel-height: 300px;
+  }
+
+  .seja-um-franqueado {
+    background-attachment: scroll;
+    padding: var(--spacing-lg) 0;
+  }
+
+  .carrossel-controls {
+    padding: 0 var(--spacing-xs);
+  }
+}
+
+@media (max-width: 480px) {
+  :host {
+    --carousel-height: 200px;
+  }
+
+  .seja-um-franqueado {
+    padding: var(--spacing-md) 0;
+  }
+}

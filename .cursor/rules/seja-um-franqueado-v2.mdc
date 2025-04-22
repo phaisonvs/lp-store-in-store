@@ -1,0 +1,19 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+
+# Escopo
+
+Trabalhar apenas nos arquivos dentro de /local:
+
+index.html (prioridade: ajustes para funcionar no Go Live Server)
+
+script.js
+
+style.css
+
+Foco inicial: corrigir o HTML para visualização local.
+
+Melhorias de performance e design serão feitas sob demanda.

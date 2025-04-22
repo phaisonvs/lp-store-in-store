@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<template>
+  <!-- Container Principal -->
+  <div class="seja-um-franqueado">
+    <!-- Seção Hero -->
+    <section class="conteudo-seja-um-franqueado-abc">
+      <div class="container-seja-um-franqueado">
+        <div class="content-seja-um-franqueado">
+          <div class="animate-on-scroll">
+            <h2>Seja um Franqueado</h2>
+            <p>Faça parte da nossa história de sucesso</p>
+          </div>
+
+          <!-- Números -->
+          <div class="numeros-container animate-on-scroll">
+            <div class="numero-item">
+              <h3>+500</h3>
+              <p>Lojas em todo o Brasil</p>
+            </div>
+            <div class="numero-item">
+              <h3>25 anos</h3>
+              <p>De experiência no mercado</p>
+            </div>
+            <div class="numero-item">
+              <h3>97%</h3>
+              <p>De satisfação dos franqueados</p>
+            </div>
+          </div>
+
+          <div class="button-container">
+            <button class="primary-button" onclick={handlePrimaryClick}>
+              Quero ser um franqueado
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Seção Carrossel de Depoimentos -->
+    <section class="container-prova-social-1">
+      <div class="carrossel-container animate-on-scroll">
+        <div class="carrossel-prova-social-1">
+          <template for:each={testimonials} for:item="testimonial" for:index="index">
+            <div key={testimonial.id} class="carrossel-item">
+              <div class="video-thumbnail" onclick={handleVideoClick} data-video-id={testimonial.videoId}>
+                <div class="thumbnail-image" style={testimonial.thumbnailStyle}>
+                  <div class="play-button"></div>
+                </div>
+                <h4>{testimonial.title}</h4>
+                <p>{testimonial.description}</p>
+              </div>
+            </div>
+          </template>
+        </div>
+        <div class="carrossel-navigation">
+          <button class="carrossel-button prev" onclick={handlePrevClick}>Anterior</button>
+          <button class="carrossel-button next" onclick={handleNextClick}>Próximo</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Modal de Vídeo -->
+    <template if:true={isVideoModalOpen}>
+      <div class="video-modal" onclick={closeVideoModal}>
+        <div class="video-modal-content" onclick={handleModalContentClick}>
+          <button class="video-modal-close" onclick={closeVideoModal}>&times;</button>
+          <div class="video-container">
+            <iframe src={currentVideoUrl} frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen>
+            </iframe>
+          </div>
+        </div>
+      </div>
+    </template>
+  </div>
+</template>

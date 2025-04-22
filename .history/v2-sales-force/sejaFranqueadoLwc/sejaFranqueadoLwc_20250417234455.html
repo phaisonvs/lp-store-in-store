@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<template>
+  <!-- Container Principal -->
+  <div class="seja-um-franqueado">
+    <!-- Seção Hero -->
+    <section class="conteudo-seja-um-franqueado-abc">
+      <div class="container-seja-um-franqueado">
+        <div class="content-seja-um-franqueado">
+          <h2>Seja um Franqueado</h2>
+          <p>Faça parte da maior rede de lojas especializadas em colchões e móveis do Brasil.</p>
+          <div class="button-container">
+            <button class="primary-button" onclick={handlePrimaryClick}>
+              Quero ser um franqueado
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Seção Carrossel de Depoimentos -->
+    <section class="container-prova-social-1">
+      <div class="carrossel-prova-social-1">
+        <template for:each={testimonials} for:item="testimonial" for:index="index">
+          <article key={testimonial.id} class="card-prova-social">
+            <!-- Placeholder para vídeo que será carregado sob demanda -->
+            <div class="video-placeholder" data-video-id={testimonial.videoId} onclick={handleVideoClick}>
+              <img src={testimonial.thumbnail} alt={testimonial.title} loading="lazy" />
+              <div class="play-button"></div>
+            </div>
+          </article>
+        </template>
+      </div>
+      <!-- Controles do carrossel -->
+      <div class="carousel-controls">
+        <button class="prev-button" onclick={handlePrevClick}>Anterior</button>
+        <button class="next-button" onclick={handleNextClick}>Próximo</button>
+      </div>
+    </section>
+
+    <!-- Modal de Vídeo -->
+    <template if:true={isVideoModalOpen}>
+      <section role="dialog" class="slds-modal slds-fade-in-open">
+        <div class="slds-modal__container">
+          <header class="slds-modal__header">
+            <button class="slds-button slds-button_icon slds-modal__close" onclick={closeVideoModal}>
+              <lightning-icon icon-name="utility:close" size="small"></lightning-icon>
+            </button>
+          </header>
+          <div class="slds-modal__content">
+            <div class="video-wrapper">
+              <iframe src={activeVideoUrl} frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen>
+              </iframe>
+            </div>
+          </div>
+        </div>
+      </section>
+      <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+  </div>
+</template>

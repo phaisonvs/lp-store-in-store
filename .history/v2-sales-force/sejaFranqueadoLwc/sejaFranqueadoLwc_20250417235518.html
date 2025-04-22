@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<template>
+  <!-- Container Principal -->
+  <div class="seja-um-franqueado">
+    <!-- Seção Hero -->
+    <section class="conteudo-seja-um-franqueado-abc">
+      <div class="container-seja-um-franqueado">
+        <div class="content-seja-um-franqueado">
+          <div class="animate-on-scroll">
+            <h2>Seja um Franqueado</h2>
+            <p>Faça parte da nossa rede de sucesso e transforme vidas através do empreendedorismo.</p>
+          </div>
+
+          <!-- Números -->
+          <div class="numeros-container animate-on-scroll">
+            <div class="numero-item">
+              <h3>+500</h3>
+              <p>Lojas em todo o Brasil</p>
+            </div>
+            <div class="numero-item">
+              <h3>25 anos</h3>
+              <p>De experiência no mercado</p>
+            </div>
+            <div class="numero-item">
+              <h3>97%</h3>
+              <p>De satisfação dos franqueados</p>
+            </div>
+          </div>
+
+          <div class="button-container">
+            <button class="primary-button" onclick={handlePrimaryClick}>
+              Quero ser um franqueado
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Seção Carrossel de Depoimentos -->
+    <section class="container-prova-social-1">
+      <div class="carrossel-container animate-on-scroll">
+        <div class="carrossel-wrapper" style={carrosselStyle}>
+          <div class="carrossel-prova-social-1" style={carrosselStyle}>
+            <div class="carrossel-container">
+              <button class="carrossel-button prev" onclick={previousSlide} disabled={isPreviousDisabled}>
+                <span class="sr-only">Anterior</span>
+              </button>
+
+              <div class="carrossel-viewport">
+                <div class="carrossel-wrapper">
+                  <template for:each={depoimentos} for:item="depoimento">
+                    <div key={depoimento.id} class="carrossel-slide">
+                      <div class="depoimento-card" onclick={openModal} data-video-url={depoimento.videoUrl}>
+                        <img src={depoimento.thumbnail} alt="Thumbnail do depoimento" loading="lazy">
+                        <div class="play-button">
+                          <span class="sr-only">Reproduzir vídeo</span>
+                        </div>
+                      </div>
+                    </div>
+                  </template>
+                </div>
+              </div>
+
+              <button class="carrossel-button next" onclick={nextSlide} disabled={isNextDisabled}>
+                <span class="sr-only">Próximo</span>
+              </button>
+            </div>
+          </div>
+          <div class="carrossel-controls">
+            <button class="carrossel-button" onclick={handlePrevClick}>
+              <lightning-icon icon-name="utility:chevronleft" size="small"></lightning-icon>
+            </button>
+            <button class="carrossel-button" onclick={handleNextClick}>
+              <lightning-icon icon-name="utility:chevronright" size="small"></lightning-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Modal de Vídeo -->
+    <template if:true={isModalOpen}>
+      <div class="modal-overlay" onclick={closeModal}>
+        <div class="modal-content" onclick={event=> event.stopPropagation()}>
+          <button class="modal-close" onclick={closeModal}>
+            <span class="sr-only">Fechar</span>
+          </button>
+          <iframe src={currentVideoUrl} frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+          </iframe>
+        </div>
+      </div>
+    </template>
+  </div>
+</template>

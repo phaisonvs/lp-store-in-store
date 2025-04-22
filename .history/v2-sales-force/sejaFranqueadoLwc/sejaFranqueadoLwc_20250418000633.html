@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<template>
+  <!-- Container Principal -->
+  <div class="seja-um-franqueado">
+    <!-- Seção Hero -->
+    <section class="conteudo-seja-um-franqueado-abc">
+      <div class="container-seja-um-franqueado">
+        <div class="content-seja-um-franqueado animate-on-scroll">
+          <h2>Seja um Franqueado</h2>
+          <p>Faça parte da nossa rede de sucesso e transforme vidas através do empreendedorismo.</p>
+        </div>
+
+        <!-- Números -->
+        <div class="numeros-container animate-on-scroll">
+          <div class="numero-item">
+            <h3>+500</h3>
+            <p>Lojas em todo o Brasil</p>
+          </div>
+          <div class="numero-item">
+            <h3>25 anos</h3>
+            <p>De experiência no mercado</p>
+          </div>
+          <div class="numero-item">
+            <h3>97%</h3>
+            <p>De satisfação dos franqueados</p>
+          </div>
+        </div>
+
+        <div class="button-container">
+          <button class="primary-button" onclick={handlePrimaryClick}>
+            Quero ser um franqueado
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Seção Carrossel de Depoimentos -->
+    <section class="depoimentos-section">
+      <div class="carrossel-container animate-on-scroll">
+        <div class="carrossel-viewport">
+          <div class="carrossel-wrapper" style={carrosselStyle}>
+            <template for:each={computedDepoimentos} for:item="depoimento" for:index="index">
+              <div key={depoimento.id} class="carrossel-slide">
+                <div class="depoimento-card" onclick={openModal} data-video={depoimento.videoUrl}>
+                  <div class="thumbnail" data-thumbnail-url={depoimento.thumbnailUrl}>
+                    <div class="play-button">
+                      <lightning-icon icon-name="utility:play" size="medium"></lightning-icon>
+                    </div>
+                  </div>
+                  <div class="depoimento-info">
+                    <h3>{depoimento.nome}</h3>
+                    <p>{depoimento.cidade}</p>
+                  </div>
+                </div>
+              </div>
+            </template>
+          </div>
+        </div>
+
+        <!-- Botões de Navegação -->
+        <template if:true={showPrevButton}>
+          <button class="carrossel-button prev" onclick={handlePrevSlide} aria-label="Slide anterior">
+            <lightning-icon icon-name="utility:chevronleft" size="medium"></lightning-icon>
+          </button>
+        </template>
+        <template if:true={showNextButton}>
+          <button class="carrossel-button next" onclick={handleNextSlide} aria-label="Próximo slide">
+            <lightning-icon icon-name="utility:chevronright" size="medium"></lightning-icon>
+          </button>
+        </template>
+      </div>
+    </section>
+
+    <!-- Modal de Vídeo -->
+    <template if:true={modalOpen}>
+      <section role="dialog" tabindex="-1" aria-labelledby="modal-heading" aria-modal="true"
+        aria-describedby="modal-content" class="modal-overlay" onkeydown={handleKeyDown}>
+        <div class="modal-content" onclick={event=> event.stopPropagation()}>
+          <button class="modal-close" onclick={closeModal} aria-label="Fechar modal">
+            <lightning-icon icon-name="utility:close" size="medium"></lightning-icon>
+          </button>
+          <iframe src={selectedVideo} frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+          </iframe>
+        </div>
+      </section>
+    </template>
+  </div>
+</template>

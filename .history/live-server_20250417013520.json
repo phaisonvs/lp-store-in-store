@@ -1,0 +1,6 @@
+{
+  "root": "./local",
+  "open": "/index.html",
+  "wait": 1000,
+  "logLevel": 1
+}
